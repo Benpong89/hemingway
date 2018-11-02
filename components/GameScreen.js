@@ -1,12 +1,3 @@
-//To do
-//1. Add 10 words to Library
-//3. Style the game page some more. Background image?
-//4. Try to publish again
-
-//Long term to do
-//1. Add different levels 5th grade reading level, 10th grade reading level, college level, etc.
-//2. Thesaurus API?
-
 import React, { Component } from "react";
 import { Button, View, Text, TouchableOpacity, TextInput } from "react-native";
 import { Library } from "../imports/library.js";

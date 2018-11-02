@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "hemingway",
-    "description": "This project is really great.",
+    "description": "Hemingway is a vocabulary building phone game. Players are given various different words and must list as many synonyms of the word as possible. Technologies used include React-Native and Expo.\n\nUpcoming features include:\n\n1.  Synonyms will be sourced through a public thesaurus API.\n2.  High score will be saved by cloud DB.\n3.  Easy, Medium, Hard levels\n\nGithub - https://github.com/Benpong89/hemingway",
     "slug": "hemingway",
     "privacy": "public",
     "sdkVersion": "30.0.0",
@@ -25,6 +25,7 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "githubUrl": "https://github.com/Benpong89/hemingway"
   }
 }

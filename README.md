@@ -1,3 +1,7 @@
-Hemingway is an educational vocabulary building phone game. Players are given a 5 different words and must list as many synonyms of the word as possible within the time limit. Synonyms are sourced through a public thesaurus API. High score will be saved by cloud DB.
+Hemingway is a vocabulary building phone game. Players are given various different words and must list as many synonyms of the word as possible. Technologies used include React-Native.
 
-Technologies used include React-Native.
+Upcoming features include:
+
+1.  Synonyms will be sourced through a public thesaurus API.
+2.  High score will be saved by cloud DB.
+3.  Easy, Medium, Hard levels

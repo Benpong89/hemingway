@@ -1,12 +1,17 @@
+//To do
+//1. Add 10 words to Library
+//2. Seperate out CSS and Libary to another file. Is that possible?
+//3. Style the game page some more. Background image?
+//4. Try to publish again
+
+//Long term to do
+//1. Add different levels 5th grade reading level, 10th grade reading level, college level, etc.
+//2. Thesaurus API?
+
 import React, { Component } from "react";
-import {
-  Button,
-  View,
-  Text,
-  TouchableOpacity,
-  TextInput,
-  StyleSheet
-} from "react-native";
+import { Button, View, Text, TouchableOpacity, TextInput } from "react-native";
+import { Library } from "../imports/library.js";
+import { Styles } from "../imports/stylesheets.js";
 
 class DetailsScreen extends Component {
   static navigationOptions = {
@@ -14,11 +19,7 @@ class DetailsScreen extends Component {
   };
 
   state = {
-    Library: {
-      Test: ["exam", "quiz", "assessment", "evaluation"],
-      Tired: ["sleepy", "exhausted", "weary", "worn"],
-      Happy: ["cheerful", "contented", "delighted", "ecstatic"]
-    },
+    Library: Library,
     DisplayWord: "",
     SeenWords: new Set(),
     DisplayInputs: [],
@@ -34,9 +35,6 @@ class DetailsScreen extends Component {
   async checkWord() {
     const word = this.state.TextInput.toLowerCase();
     const synonyms = this.state.Library[this.state.DisplayWord];
-    // if (this.state.DisplayInputs.has(word)) {
-    //   this.setState({ Message: "Already submitted!" });
-    // }
 
     if (synonyms.includes(word)) {
       await this.setState({
@@ -48,9 +46,6 @@ class DetailsScreen extends Component {
     } else {
       this.setState({ Message: "Not a valid entry try again!" });
     }
-    //Reference the list of synonyms based on the DisplayWord local state,
-    //Check for inclusion of word submitted.
-    //Clear TextInput local state
   }
 
   componentDidMount() {
@@ -74,13 +69,13 @@ class DetailsScreen extends Component {
     });
 
     return (
-      <View style={styles.container}>
+      <View style={Styles.container}>
         <Text>Game Screen !!</Text>
         <Text>Synonyms: {inputs}</Text>
         <Text>Score: {this.state.Score}</Text>
-        <Text style={styles.displayWord}>{this.state.DisplayWord}</Text>
+        <Text style={Styles.displayWord}>{this.state.DisplayWord}</Text>
         <TextInput
-          style={styles.textInput}
+          style={Styles.textInput}
           underlineColorAndroid="transparent"
           placeholder="Synonym here"
           placeholderTextColor="#9a73ef"
@@ -89,15 +84,15 @@ class DetailsScreen extends Component {
         />
         <Text>{this.state.Message}</Text>
         <TouchableOpacity
-          style={styles.button}
+          style={Styles.button}
           onPress={() => this.checkWord()}
         >
           <Text style={{ color: "white" }}>Submit</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => this.setWord()}>
+        <TouchableOpacity style={Styles.button} onPress={() => this.setWord()}>
           <Text style={{ color: "white" }}>Next Word</Text>
         </TouchableOpacity>
-        <Text style={styles.instructions}>
+        <Text style={Styles.instructions}>
           How to Play: Type in a Synonym of the word in bold. For each synonym
           you get correctly, you get a score. Skip to next word after you get 5
           words. If you skip to next word before you reach 5 you will lose a
@@ -111,36 +106,5 @@ class DetailsScreen extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  button: {
-    backgroundColor: "#7a42f4",
-    padding: 10,
-    margin: 15,
-    height: 40
-  },
-  instructions: {
-    margin: 10,
-    padding: 5
-  },
-  textInput: {
-    margin: 10,
-    width: 200,
-    height: 60,
-    borderColor: "#7a42f4",
-    borderWidth: 1,
-    padding: 15,
-    fontSize: 25
-  },
-  displayWord: {
-    margin: 10,
-    fontSize: 25
-  }
-});
 
 export default DetailsScreen;

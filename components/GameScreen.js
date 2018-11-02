@@ -1,6 +1,5 @@
 //To do
 //1. Add 10 words to Library
-//2. Seperate out CSS and Libary to another file. Is that possible?
 //3. Style the game page some more. Background image?
 //4. Try to publish again
 
@@ -32,12 +31,12 @@ class DetailsScreen extends Component {
     this.setState({ TextInput: text });
   };
 
-  async checkWord() {
+  checkWord() {
     const word = this.state.TextInput.toLowerCase();
     const synonyms = this.state.Library[this.state.DisplayWord];
 
     if (synonyms.includes(word)) {
-      await this.setState({
+      this.setState({
         Score: this.state.Score + 1,
         DisplayInputs: this.state.DisplayInputs.concat(word),
         Message: "Good Job! See if you can get more words",
@@ -63,6 +62,25 @@ class DetailsScreen extends Component {
     });
   }
 
+  nextWord() {
+    if (this.state.DisplayWord === undefined) {
+      this.setState({
+        Message: "That's all the words! Thanks for playing!"
+      });
+    }
+
+    if (this.state.DisplayInputs.length < 5) {
+      this.setState({
+        Score: this.state.Score - 2 < 0 ? 0 : this.state.Score - 2
+      });
+    }
+
+    this.setWord();
+    this.setState({
+      DisplayInputs: []
+    });
+  }
+
   render() {
     const inputs = this.state.DisplayInputs.map((word, idx) => {
       return <Text key={idx}>{word + " "}</Text>;
@@ -70,17 +88,16 @@ class DetailsScreen extends Component {
 
     return (
       <View style={Styles.container}>
-        <Text>Game Screen !!</Text>
+        <Text style={Styles.title}>Welcome to Hemingway!</Text>
         <Text>Synonyms: {inputs}</Text>
         <Text>Score: {this.state.Score}</Text>
         <Text style={Styles.displayWord}>{this.state.DisplayWord}</Text>
         <TextInput
           style={Styles.textInput}
-          underlineColorAndroid="transparent"
           placeholder="Synonym here"
           placeholderTextColor="#9a73ef"
-          autoCapitalize="none"
           onChangeText={this.handleInput}
+          value={this.state.TextInput}
         />
         <Text>{this.state.Message}</Text>
         <TouchableOpacity
@@ -89,14 +106,14 @@ class DetailsScreen extends Component {
         >
           <Text style={{ color: "white" }}>Submit</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={Styles.button} onPress={() => this.setWord()}>
+        <TouchableOpacity style={Styles.button} onPress={() => this.nextWord()}>
           <Text style={{ color: "white" }}>Next Word</Text>
         </TouchableOpacity>
         <Text style={Styles.instructions}>
           How to Play: Type in a Synonym of the word in bold. For each synonym
           you get correctly, you get a score. Skip to next word after you get 5
-          words. If you skip to next word before you reach 5 you will lose a
-          points. Time limit is 60 seconds
+          words. If you skip to next word before you reach 5 or more you will
+          lose points.
         </Text>
         <Button
           title="Go back"

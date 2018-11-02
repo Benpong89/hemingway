@@ -35,7 +35,7 @@ export const Library = {
     "overturn",
     "terminate"
   ],
-  strong: [
+  Strong: [
     "able",
     "active",
     "durable",

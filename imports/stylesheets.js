@@ -15,7 +15,7 @@ export const Styles = StyleSheet.create({
     padding: 10,
     margin: 15,
     height: 40,
-    width: 145
+    width: 150
   },
   instructions: {
     margin: 10,
